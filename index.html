@@ -2,12 +2,68 @@
 <html>
 <head>
     <title>University Course Registration - Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 300px;
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            border: none;
+            color: white;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <script>
+        // Show error message 
+        window.onload = function() {
+            const params = new URLSearchParams(window.location.search);
+            if (params.get('error') === '1') {
+                document.getElementById('errorMsg').textContent = 'Invalid username or password.';
+            }
+        };
+    </script>
 </head>
 <body>
     <h1>Login to Course Registration</h1>
     <form action="LoginServlet" method="POST">
-        Username: <input type="text" name="username" required><br>
-        Password: <input type="password" name="password" required><br>
+        Username: <input type="text" name="username" required placeholder="pasindu25"><br>
+        Password: <input type="password" name="password" required placeholder="Your password"><br>
         <input type="submit" value="Login">
     </form>
 </body>

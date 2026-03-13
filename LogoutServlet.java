@@ -7,9 +7,16 @@ import javax.servlet.http.*;
 public class LogoutServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
             throws ServletException, IOException {
-        // TODO: Implement logout logic
-        // 1. Invalidate session
-        // 2. Remove username cookie
-        // 3. Redirect to login.html
+        HttpSession session = request.getSession(false);
+        if (session != null) {
+            session.invalidate();
+        }
+        // Remove the username cookie setting MaxAge to 0
+        Cookie userCookie = new Cookie("username", "");
+        userCookie.setMaxAge(0);
+        userCookie.setPath("/");
+        response.addCookie(userCookie);
+
+        response.sendRedirect("login.html");
     }
 }
